@@ -35,12 +35,24 @@ public class Main {
                         System.out.println("Indtast oprindelsesår (YYYY-MM-DD): ");
                         String yearCreatedStr = scanner.nextLine();
                         LocalDate yearCreated = LocalDate.parse(yearCreatedStr, DateTimeFormatter.ISO_LOCAL_DATE);
-                        System.out.println("Er din superhelt et menneske? (true/false): ");
-                        boolean isHuman = scanner.nextBoolean();
+                        boolean isHuman;
+                        do {
+                            System.out.print("Er din superhelt et menneske? (ja/nej): ");
+                            String isHumanInput = scanner.nextLine().toLowerCase();
+                            if (isHumanInput.equals("ja")) {
+                                isHuman = true;
+                                break;
+                            } else if (isHumanInput.equals("nej")) {
+                                isHuman = false;
+                                break;
+                            } else {
+                                System.out.println("Ugyldigt svar. Skriv enten 'ja' eller 'nej'.");
+                            }
+                        } while (true);
                         System.out.println("Hvor stærk er din superhelt? ");
                         int strength = scanner.nextInt();
                         superheroController.addSuperhero(name, superheroName, superpower, yearCreated, isHuman, strength);
-                        System.out.println("Superhelt er tilføjet i databasen.");;
+                        System.out.println("Superhelt er tilføjet i databasen.");
                         break;
                     case 2:
                         System.out.println("Indtast superheronavnet på din superhelt du vil have fjernet se listen ...");

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class SuperheroDatabase {
     private ArrayList<Superhero> superheroes;
-    private int maxSuperheroes = 5;
 
     public SuperheroDatabase() {
         this.superheroes = new ArrayList<>();
@@ -16,14 +15,10 @@ public class SuperheroDatabase {
         superheroes.add(superhero1);
         superheroes.add(superhero2);
     }
-    public boolean addSuperheroes(String name, String realName, String superpower, LocalDate yearCreated, boolean isHuman, int strength ){
-        if(superheroes.size() < maxSuperheroes){
-            Superhero newSuperhero = new Superhero(name, realName,superpower,yearCreated,isHuman,strength);
-            superheroes.add(newSuperhero);
-            return true;
-        } else {
-            System.out.println("Databasen er fuld, der kan ikke tilføjes flere superhelte.");
-        } return false;
+    public boolean addSuperheroes(String name, String realName, String superpower, LocalDate yearCreated, boolean isHuman, int strength) {
+        Superhero newSuperhero = new Superhero(name, realName, superpower, yearCreated, isHuman, strength);
+        superheroes.add(newSuperhero);
+        return true;
     }
 
     public void showSuperheroes(){
@@ -33,12 +28,13 @@ public class SuperheroDatabase {
         }
     }
 
-    public boolean removeSuperhero(String superheroName){
-        for (Superhero superhero : superheroes){
-            if (superhero.getName().equals(superheroName));
-            superheroes.remove(superheroName);
-            System.out.println("Superhelten med navnet " + superheroName + " blev fjernet i databasen.");
-            return true;
+    public boolean removeSuperhero(String superheroName) {
+        for (Superhero superhero : superheroes) {
+            if (superhero.getName().equals(superheroName)) {
+                superheroes.remove(superheroName);
+                System.out.println("Superhelten med navnet " + superheroName + " blev fjernet i databasen.");
+                return true;
+            }
         }
         System.out.println("Superhelten med navnet " + superheroName + " blev ikke fundet i databasen.");
         return false;
